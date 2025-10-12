@@ -55,11 +55,8 @@ await expect(page.getByRole('heading', { name: 'Personal Details' })).toBeVisibl
 //AND I search the new employee
 await page.getByRole('link', { name: 'PIM' }).click();
 await expect(page.getByRole('heading', { name: 'Employee Information' })).toBeVisible();
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().click();
 await page.getByRole('textbox', { name: 'Type for hints...' }).first().fill(EmployName);
-await page.waitForTimeout(2000);
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().press('ArrowDown');
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().press('Enter');
+await page.getByRole('option', { name: EmployName }).click();
 await page.getByRole('button', { name: 'Search' }).click();
 await expect(page.getByText(EmployNumb)).toBeVisible();
 
@@ -73,11 +70,8 @@ await page.locator('div').filter({ hasText: /^Employee IdOther Id$/ }).getByRole
 await page.locator('form').filter({ hasText: 'Employee Full NameEmployee' }).getByRole('button').click();
 await page.getByRole('link', { name: 'PIM' }).click();
 await expect(page.getByRole('heading', { name: 'Employee Information' })).toBeVisible();
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().click();
 await page.getByRole('textbox', { name: 'Type for hints...' }).first().fill(EmployName);
-await page.waitForTimeout(2000);
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().press('ArrowDown');
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().press('Enter');
+await page.getByRole('option', { name: EmployName }).click();
 await page.getByRole('button', { name: 'Search' }).click();
 await expect(page.getByText(EmployNumb2)).toBeVisible();
 
@@ -110,7 +104,6 @@ await expect(page.getByRole('heading', { name: 'System Users' })).toBeVisible();
 await page.getByRole('textbox').nth(1).click();
 await page.getByRole('textbox').nth(1).fill(username);
 await page.getByRole('button', { name: 'Search' }).click();
-await page.waitForTimeout(2000);
 await expect(page.getByText(EmployName)).toBeVisible();
 
 //AND I edit the new admin user
@@ -130,7 +123,6 @@ await expect(page.getByText('Disabled')).toBeVisible();
 await page.getByRole('button', { name: '' }).click();
 await page.getByRole('button', { name: ' Yes, Delete' }).click();
 await page.getByRole('button', { name: 'Search' }).click();
-await page.waitForTimeout(3000);
 await expect(page.getByText(EmployName)).not.toBeVisible();
 
 //AND I delete the new employee
@@ -138,14 +130,11 @@ await page.getByRole('link', { name: 'PIM' }).click();
 await expect(page.getByRole('heading', { name: 'Employee Information' })).toBeVisible();
 await page.getByRole('textbox', { name: 'Type for hints...' }).first().click();
 await page.getByRole('textbox', { name: 'Type for hints...' }).first().fill(EmployName);
-await page.waitForTimeout(2000);
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().press('ArrowDown');
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().press('Enter');
+await page.getByRole('option', { name: EmployName }).click();
 await page.getByRole('button', { name: 'Search' }).click();
 await page.getByRole('button', { name: '' }).click();
 await page.getByRole('button', { name: ' Yes, Delete' }).click();
 await page.getByRole('button', { name: 'Search' }).click();
-await page.waitForTimeout(2000);
 await expect(page.getByText(EmployNumb2)).not.toBeVisible();
 
 });
