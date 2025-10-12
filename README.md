@@ -28,7 +28,7 @@ Demo Video Available
 
   FEATURES:
 
-  TypeSCript + Gherkin
+  TypeScript + Gherkin
   
   FakerJS - popular library that generates fake (but reasonable) data
 
