@@ -17,9 +17,9 @@ const password = process.env.PLAYWRIGHT_PASSWORD  as string;
 // const password = process.env.PLAYWRIGHT_PASSWORD || 'admin123';
 const fname = faker.person.firstName();
 const lname = faker.person.lastName();
-const EmployName = fname + ' ' + lname;
+const employName = fname + ' ' + lname;
 const randNumb = faker.string.numeric(8);
-const EmployNumb = '9' + randNumb;
+const employNumb = '9' + randNumb;
 const username = 'admin' + lname;
 
 
@@ -44,36 +44,36 @@ await expect(page.getByRole('heading', { name: 'Add Employee' })).toBeVisible();
 
 //AND I create a new employee user
 const userPage = new UserPage(page);
-await userPage.user(fname, lname, EmployNumb);
+await userPage.user(fname, lname, employNumb);
 // await page.getByRole('textbox', { name: 'First Name' }).fill(fname);
 // await page.getByRole('textbox', { name: 'Last Name' }).fill(lname);
 // await page.getByRole('textbox').nth(4).dblclick();
-// await page.getByRole('textbox').nth(4).fill(EmployNumb);
+// await page.getByRole('textbox').nth(4).fill(employNumb);
 // await page.getByRole('button', { name: 'Save' }).click();
 await expect(page.getByRole('heading', { name: 'Personal Details' })).toBeVisible();
 
 //AND I search the new employee
 await page.getByRole('link', { name: 'PIM' }).click();
 await expect(page.getByRole('heading', { name: 'Employee Information' })).toBeVisible();
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().fill(EmployName);
-await page.getByRole('option', { name: EmployName }).click();
+await page.getByRole('textbox', { name: 'Type for hints...' }).first().fill(employName);
+await page.getByRole('option', { name: employName }).click();
 await page.getByRole('button', { name: 'Search' }).click();
-await expect(page.getByText(EmployNumb)).toBeVisible();
+await expect(page.getByText(employNumb)).toBeVisible();
 
 //THEN I edit the new employee
 await page.getByRole('button', { name: '' }).click();
 await expect(page.getByRole('heading', { name: 'Personal Details' })).toBeVisible();
 const randNumb2 = faker.string.numeric(8);
-const EmployNumb2 = '9' + randNumb2;
+const employNumb2 = '9' + randNumb2;
 await page.locator('div').filter({ hasText: /^Employee IdOther Id$/ }).getByRole('textbox').first().dblclick();
-await page.locator('div').filter({ hasText: /^Employee IdOther Id$/ }).getByRole('textbox').first().fill(EmployNumb2);
+await page.locator('div').filter({ hasText: /^Employee IdOther Id$/ }).getByRole('textbox').first().fill(employNumb2);
 await page.locator('form').filter({ hasText: 'Employee Full NameEmployee' }).getByRole('button').click();
 await page.getByRole('link', { name: 'PIM' }).click();
 await expect(page.getByRole('heading', { name: 'Employee Information' })).toBeVisible();
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().fill(EmployName);
-await page.getByRole('option', { name: EmployName }).click();
+await page.getByRole('textbox', { name: 'Type for hints...' }).first().fill(employName);
+await page.getByRole('option', { name: employName }).click();
 await page.getByRole('button', { name: 'Search' }).click();
-await expect(page.getByText(EmployNumb2)).toBeVisible();
+await expect(page.getByText(employNumb2)).toBeVisible();
 
 
 //GIVEN I have the admin credentials to assign a new employee as an Admin User.
@@ -86,12 +86,12 @@ await expect(page.getByRole('heading', { name: 'System Users' })).toBeVisible();
 await page.getByRole('button', { name: ' Add' }).click();
 await expect(page.getByRole('heading', { name: 'Add User' })).toBeVisible();
 const adminPage = new AdminPage(page);
-await adminPage.user(EmployName, username, password);
+await adminPage.user(employName, username, password);
 // await page.locator('form i').first().click();
 // await page.getByRole('option', { name: 'Admin' }).locator('span').click();
 // await page.getByRole('textbox', { name: 'Type for hints...' }).click();
-// await page.getByRole('textbox', { name: 'Type for hints...' }).fill(EmployName);
-// await page.getByText(EmployName).click();
+// await page.getByRole('textbox', { name: 'Type for hints...' }).fill(employName);
+// await page.getByText(employName).click();
 // await page.locator('form i').nth(1).click();
 // await page.getByText('Enabled').click();
 // await page.getByRole('textbox').nth(2).fill(username);
@@ -104,7 +104,7 @@ await expect(page.getByRole('heading', { name: 'System Users' })).toBeVisible();
 await page.getByRole('textbox').nth(1).click();
 await page.getByRole('textbox').nth(1).fill(username);
 await page.getByRole('button', { name: 'Search' }).click();
-await expect(page.getByText(EmployName)).toBeVisible();
+await expect(page.getByText(employName)).toBeVisible();
 
 //AND I edit the new admin user
 await page.getByRole('button', { name: '' }).click();
@@ -116,26 +116,26 @@ await expect(page.getByRole('heading', { name: 'System Users' })).toBeVisible();
 await page.getByRole('textbox').nth(1).click();
 await page.getByRole('textbox').nth(1).fill(username);
 await page.getByRole('button', { name: 'Search' }).click();
-await expect(page.getByText(EmployName)).toBeVisible();
+await expect(page.getByText(employName)).toBeVisible();
 await expect(page.getByText('Disabled')).toBeVisible();
 
 //THEN I delete the Admin role for the new employee
 await page.getByRole('button', { name: '' }).click();
 await page.getByRole('button', { name: ' Yes, Delete' }).click();
 await page.getByRole('button', { name: 'Search' }).click();
-await expect(page.getByText(EmployName)).not.toBeVisible();
+await expect(page.getByText(employName)).not.toBeVisible();
 
 //AND I delete the new employee
 await page.getByRole('link', { name: 'PIM' }).click();
 await expect(page.getByRole('heading', { name: 'Employee Information' })).toBeVisible();
 await page.getByRole('textbox', { name: 'Type for hints...' }).first().click();
-await page.getByRole('textbox', { name: 'Type for hints...' }).first().fill(EmployName);
-await page.getByRole('option', { name: EmployName }).click();
+await page.getByRole('textbox', { name: 'Type for hints...' }).first().fill(employName);
+await page.getByRole('option', { name: employName }).click();
 await page.getByRole('button', { name: 'Search' }).click();
 await page.getByRole('button', { name: '' }).click();
 await page.getByRole('button', { name: ' Yes, Delete' }).click();
 await page.getByRole('button', { name: 'Search' }).click();
-await expect(page.getByText(EmployNumb2)).not.toBeVisible();
+await expect(page.getByText(employNumb2)).not.toBeVisible();
 
 });
 
