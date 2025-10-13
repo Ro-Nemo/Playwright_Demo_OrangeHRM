@@ -22,7 +22,6 @@ export class UserPage {
   async user(firstname: string, lastname: string, employnumber: string) {
     await this.firstnameInput.fill(firstname);
     await this.lastnameInput.fill(lastname);
-    await this.employnumberInput.dblclick();
     await this.employnumberInput.fill(employnumber);
     await this.saveButton.click();
   }
