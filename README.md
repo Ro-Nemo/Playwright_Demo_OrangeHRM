@@ -1,5 +1,7 @@
 Playwright - Automated CRUD test demo in <a href="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login">OrangeHRM Portal</a>
 
+OrangeHRM is an open-source human resource management system, offering a demo environment for users to explore and test various HR-related functionalities.
+
 Demo Video Available
 
 
