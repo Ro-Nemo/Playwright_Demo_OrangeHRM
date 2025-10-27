@@ -11,7 +11,7 @@
         "incremental": true,
         "tsBuildInfoFile": ".tsbuildinfo",
         "composite": true,
-        "lib": ["esnext"],
+        "lib": ["esnext", "DOM"],
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "noEmit": true,
